@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>米兰体育 · 场景与功能简述</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #f5f1eb;
+            font-family: system-ui, -apple-system, 'Segoe UI', 'Noto Sans', Roboto, sans-serif;
+            color: #2d2a27;
+            line-height: 1.6;
+            padding: 0 16px;
+        }
+        .page-wrap {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 40px 20px 60px;
+        }
+        /* 顶部导航 */
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 0 12px;
+            border-bottom: 1px solid #d4cfc7;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .site-label {
+            font-weight: 500;
+            font-size: 1.2rem;
+            letter-spacing: 0.5px;
+            color: #4d443b;
+        }
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-size: 0.95rem;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: #5b5147;
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+        .nav-links a:hover {
+            border-bottom-color: #b8a99a;
+            color: #2d2a27;
+        }
+        /* hero 简介 */
+        .hero-intro {
+            margin-bottom: 44px;
+        }
+        .hero-intro h1 {
+            font-size: 2rem;
+            font-weight: 400;
+            line-height: 1.3;
+            margin-bottom: 12px;
+            color: #2b261f;
+        }
+        .hero-intro p {
+            font-size: 1.05rem;
+            max-width: 680px;
+            color: #3f3a35;
+        }
+        .hero-intro .highlight-link {
+            background: #eae3da;
+            padding: 0 6px 1px;
+            border-radius: 3px;
+        }
+        /* 引用块 / 提示框 */
+        .info-note {
+            background: #e8e0d6;
+            border-left: 4px solid #b8a697;
+            padding: 18px 22px;
+            margin: 32px 0 40px;
+            border-radius: 0 8px 8px 0;
+            font-size: 0.98rem;
+            color: #2f2a25;
+        }
+        .info-note strong {
+            font-weight: 600;
+            color: #201d19;
+        }
+        /* 场景模块标题 */
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin: 48px 0 24px;
+            padding-bottom: 6px;
+            border-bottom: 2px solid #dad3c9;
+            color: #2b261f;
+        }
+        .scene-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 24px;
+            margin-bottom: 16px;
+        }
+        @media (max-width: 680px) {
+            .scene-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            .top-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .hero-intro h1 {
+                font-size: 1.6rem;
+            }
+        }
+        .scene-card {
+            background: #fcfaf7;
+            padding: 24px 20px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+            border: 1px solid #e2d9cf;
+        }
+        .scene-card h3 {
+            font-size: 1.1rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+            color: #3b342d;
+        }
+        .scene-card p {
+            font-size: 0.95rem;
+            color: #47403a;
+        }
+        .scene-card .tag {
+            display: inline-block;
+            margin-top: 14px;
+            font-size: 0.75rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: #7c7166;
+            border: 1px solid #d9cec2;
+            padding: 2px 10px;
+            border-radius: 30px;
+        }
+        /* 常见说明 (FAQ 摘要) */
+        .faq-summary {
+            margin: 48px 0 32px;
+            background: #f9f5f0;
+            padding: 28px 24px;
+            border-radius: 12px;
+            border: 1px solid #ddd5cb;
+        }
+        .faq-summary h2 {
+            font-weight: 400;
+            font-size: 1.3rem;
+            margin-bottom: 18px;
+            color: #2b261f;
+        }
+        .faq-item {
+            margin-bottom: 18px;
+        }
+        .faq-item:last-child {
+            margin-bottom: 0;
+        }
+        .faq-q {
+            font-weight: 500;
+            color: #3d3630;
+            margin-bottom: 4px;
+        }
+        .faq-a {
+            color: #4d453e;
+            padding-left: 6px;
+            font-size: 0.95rem;
+        }
+        .faq-a a {
+            color: #6b5e51;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-thickness: 1px;
+            text-decoration-color: #c8bcae;
+            transition: color 0.2s;
+        }
+        .faq-a a:hover {
+            color: #2d2720;
+        }
+        /* 底部 */
+        .footer-note {
+            margin-top: 48px;
+            padding-top: 20px;
+            border-top: 1px solid #d4cfc7;
+            font-size: 0.85rem;
+            color: #70665c;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .footer-note a {
+            color: #5c5146;
+            text-decoration: none;
+            border-bottom: 1px dotted #b4a89b;
+        }
+        .footer-note a:hover {
+            border-bottom-style: solid;
+            color: #2b251f;
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 导航区 -->
+    <nav class="top-nav">
+        <span class="site-label">chinese-mlsport.com</span>
+        <div class="nav-links">
+            <a href="#intro">概览</a>
+            <a href="#scenes">使用场景</a>
+            <a href="#faq">常见说明</a>
+        </div>
+    </nav>
+
+    <!-- hero 介绍 -->
+    <section class="hero-intro" id="intro">
+        <h1>了解这个平台：<br>从功能到定位</h1>
+        <p>
+            如果你第一次来到 <span class="highlight-link">chinese-mlsport.com</span>，
+            可能会好奇它具体提供什么。简单来说，这是一个围绕体育信息与资源整合的站点，
+            重点面向中文用户。你可以将 <a href="https://chinese-mlsport.com" style="color:#4c4139; text-decoration: underline; text-underline-offset:3px;">米兰体育</a>
+            看作一个信息入口，它聚合了赛事动态、项目介绍以及相关服务引导。
+            没有复杂的包装，页面结构清晰，适合快速查找你需要的内容。
+        </p>
+    </section>
+
+    <!-- 提示框：典型用法 -->
+    <div class="info-note">
+        <strong>📌 使用前建议</strong> —— 
+        网站内容以中文呈现，主要面向对体育资讯有常规需求的浏览者。
+        如果你正在寻找特定赛事或项目分类，可以直接利用站内导航或搜索功能。
+    </div>
+
+    <!-- 三个场景模块 -->
+    <h2 class="section-title" id="scenes">三个常见使用场景</h2>
+    <div class="scene-grid">
+        <div class="scene-card">
+            <h3>📋 快速浏览赛事概要</h3>
+            <p>通过首页就能看到近期重点赛事信息，不需要层层点击。适合想花最少时间了解动态的用户。</p>
+            <span class="tag">信息聚合</span>
+        </div>
+        <div class="scene-card">
+            <h3>🔍 查找特定项目说明</h3>
+            <p>网站对不同运动项目做了基础分类，你可以根据兴趣点进去查看规则、背景或相关新闻。</p>
+            <span class="tag">分类索引</span>
+        </div>
+        <div class="scene-card">
+            <h3>🧭 作为资源导航起点</h3>
+            <p>如果你刚开始接触体育资讯站点，这里提供了一条简洁的路径：从首页出发，再根据引导进入更细分的页面。</p>
+            <span class="tag">导航起点</span>
+        </div>
+    </div>
+
+    <!-- 常见说明 (FAQ 摘要) -->
+    <div class="faq-summary" id="faq">
+        <h2>常见疑问概要</h2>
+        <div class="faq-item">
+            <div class="faq-q">▸ 这个网站主要覆盖哪些体育项目？</div>
+            <div class="faq-a">以大众参与度较高的运动为主，具体项目列表可以在站内“项目”板块查看。每条内容都附有来源或说明。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">▸ 我怎样快速找到某个联赛或赛事？</div>
+            <div class="faq-a">推荐使用站内搜索框（位于顶部），或者直接浏览“赛事”分类页。如果你希望直接回到首页重新开始，可以随时点击 <a href="https://chinese-mlsport.com">米兰体育</a> 的链接。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">▸ 页面上的资讯更新频率如何？</div>
+            <div class="faq-a">内容保持日常更新，但具体频率因板块而异。重要赛事期间相关条目会同步刷新。你可以通过首页时间戳判断最新内容。</div>
+        </div>
+        <div class="faq-item">
+            <div class="faq-q">▸ 是否需要注册或付费才能浏览？</div>
+            <div class="faq-a">目前所有公开页面均可直接访问，无需登录。部分互动功能（如评论或收藏）可能需要注册，具体以页面提示为准。</div>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <footer class="footer-note">
+        <span>© 提供清晰的信息指引 · 内容仅供参考</span>
+        <span><a href="https://chinese-mlsport.com">米兰体育</a> — 中文体育信息站点</span>
+    </footer>
+
+</div>
+</body>
+</html>
